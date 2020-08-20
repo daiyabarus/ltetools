@@ -1,0 +1,50 @@
+
+===================================
+          BBFILTER README
+===================================
+
+Two versions of bbfilter are included in this package:
+
+
+
+Version 2: Script file now renamed "bbfilterOld"
+================================================
+
+Version 2 is the old classic verison built in Perl that requires the input log file to be already decoded log.
+
+This version is deprecated and will be removed as soon as we are confident all users have successfully moved over to
+bbfilter version 3.
+
+
+
+Version 3: Script named "bbfilter"
+===========================
+
+Version 3 is completely rewritten in Java for close integration with ltng and for performance. Most legacy functionality
+should work.
+
+Important changes:
+- The trace file should NOT already be processed with ltng, TET or decode.
+- The option --bw is no longer supported. Bandwidth is taken automatically from the traces (see --traces).
+- New columns can easily be added via configuration files (no source code change of the bbfilter is needed). More info
+  on that in a coming version.
+
+For release-notes run: ./bbfilter --release-notes
+
+Example:
+  bbfilter trace.log
+  bbfilter trace.log -t http://1.1.1.1
+  bbfilter trace.log -t /path/to/translationfile/directory
+
+  
+Version 4: Script named "bbfilter"
+===========================
+
+In BbFilter version 4, log data is handled by rules and facts in a rule engine and configuration of rules and facts are handled in a online configuration gui.
+The goal with this approach is to gather as much data as possible from logs and enable the possibility for users to create their own configurations and share 
+these with other users. BbFilter version 4 is runned in the same way as version 3, but some new parameters have been added to facilitate the use of BbFilter.
+
+For more info about how to use the online configuration, see help section in the gui: https://lmr-bbifilter.rnd.ki.sw.ericsson.se/help
+
+If you miss something important or find any bugs please visit https://lmr-bbifilter.rnd.ki.sw.ericsson.se/configurations/support or 
+send an email to: PDLLTEBBFI@pdl.internal.ericsson.com

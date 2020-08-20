@@ -1,0 +1,7 @@
+  PACKAGE:        R4C
+  LTNG:           R103A
+  Flowfox:        3.8.2
+  BB Filter:      4.0.8
+  MultiMon:       1.4
+  TET & Decode:   R1C
+  Trace Tools:    R8D

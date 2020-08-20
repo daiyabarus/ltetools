@@ -1,0 +1,79 @@
+#!/usr/bin/env perl
+#
+# Filters out interesting baseband data from the trace log and present it in a nice way. Useful for both
+# post processing and realtime tracing.
+#
+# Created by (please send ideas of improvements to us):
+#   Henrik Ahlander, henrik.ahlander@ericsson.com
+#   John Nilsson, john.nilsson@ericsson.com
+#
+# Updated by:
+#   See history in the "MBB-LTNG" Eforge project
+#
+
+$| = 1;  # no buffering
+
+use warnings;
+use strict;
+
+my $isCygwin = (`uname` =~ m/cyg/i);
+
+# check java version
+my $javaVersionResult = `java -version 2>&1`;
+if($javaVersionResult =~ /(\d+\.\d+)/)
+{
+  if($1 < 1.8) 
+  {
+    print "BbFilter requires Java version 1.8. (java -version says your version is $1)\n";
+    exit 1;
+  }
+}
+
+# find real script location
+my $scriptLocation = $0;
+while(-l $scriptLocation)
+{
+  # handle symlink, find full location
+  $scriptLocation = readlink $scriptLocation;
+}
+$scriptLocation =~ s/[^\/]+$//;
+
+# start right version depending what is available
+my $jarStandalone = "${scriptLocation}bbfilter.jar";
+my $libPath = "${scriptLocation}lib";
+my $libPathLtng = "${scriptLocation}tools/ltng/lib";
+my $jarAnalyzer = "$libPath/bbfilter_analyzer.jar";
+if ($isCygwin) {
+	my $cnt = 0;
+	foreach my $a(@ARGV) {
+		if($a =~ m!/home/!){
+			splice(@ARGV, $cnt , 1, "\"`cygpath -wp $a`\"");
+		}
+		$cnt++;
+	}
+}
+
+if(-f $jarStandalone)
+{
+  # bbfilter.jar that includes everything it needs
+  my $cmd = "java -Djline.terminal=jline.UnixTerminal -jar $jarStandalone \"".join("\" \"", @ARGV)."\"";
+  system($cmd);
+ 
+}
+elsif(-f $jarAnalyzer)
+{
+  # bbfilter_analyzer.jar that require ltng's jar files to be located in the lib directory
+  my $classPaths = join(":", split(/\n/, `ls -1 $libPath/*.jar`), split(/\n/, `ls -1 $libPathLtng/*.jar`));
+  if ($isCygwin) {
+     $classPaths = "\"`cygpath -wp $classPaths`\"";
+  }
+  my $cmd = "java -Djline.terminal=jline.UnixTerminal -cp \"$classPaths\" com.ericsson.reveal.app.bbfilter.Main \"".join("\" \"", @ARGV)."\"";
+  #print "$cmd\n";
+  system($cmd);
+}
+else
+{
+  print "Error! Unable to find the needed files, check your bbfilter installation.\n";
+  print "Either $jarStandalone or $jarAnalyzer\n";
+  exit 1;
+}

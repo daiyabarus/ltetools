@@ -1,0 +1,1180 @@
+########## Change log ##########################################################
+Change History:
+
+
+--------------------------------------------------------------------------------
+Package R4C
+
+LTNG R103A
+ - Changed output format for G2 LTTng traces to be more like G1 CPP Trace&Error traces
+ - Added support for decoding L3 content in Local Events
+ - Bug fix: Update partial analysis support
+ - Bug fix: Handle invalid time in Events
+ - Bug fix: Handle spaces in path and file names
+ - Bug fix: Changed content type for interface model char from char to integer 
+ - Bug fix: Corrected filename for Interface Model DUL20
+ - Bug fix: Corrected problem with random access in text files
+ - Added support for OpenJDK
+ - Bug fix: Corrected handling of %a when printing strid trace in JSON format
+ - Uplift X2AP ([WP:4925] asn data types update for CellInfoFetchResp)
+ - Uplift X2AP (MR2937 New X2 Private Messages)
+ - Bug fix: Corrected loading of Local Events translation file 
+ - Changed FROREF type from String to Binary
+ - Outputs current traces after timeout for stdInReader
+ - Bug fix: Added missing RRC messages for LTE Events
+ - Bug fix: Corrected problem reading large HiCap text traces
+ - Uplift X2AP ([WP:4925] ASN.1 and auto-gen code for new Cell Info Fetch attributes)
+ - Added UE on DUS baseband L1 and L2 translation files
+ - Added decoding of ProtocolConfigurationOptions containers in NAS protocol
+ - Bug fix: Corrected problem printing traces with missing fragments
+ - Internal Improvements
+ - Update with new smaller ASN.1 decoders
+ - Improved error message in trace string formatter
+ - Bug fix: Corrected problem with missing strid parameters in JSON mode
+ - Do not show arguments in JSON mode
+ - Uplift IfModelUtils
+ - Uplift X2AP ([MH:HU55056] Fixed the non-compatible IE.), RRC ([WP:5126] Uplift of RRC ASN to version 12.8.0 of 3GPP Jan.2016)
+ - Print IMEISV in NAS (other than as a byte array)
+ - Add support for Local Events
+
+Trace Tools R8D
+ - 	Added support for OpenJDK
+
+Flowfox 3.8.2
+ - Added G2 log handling - thanks Martin Andersson Z
+ - Added HS-FACH state indicated in 3GRRC flow
+ - Added GCP bit info decoding for WCDMA UE_GENERAL trace
+
+--------------------------------------------------------------------------------
+Package R4B
+
+LTNG R90A
+ - Uplift X2AP (WP5188, Intra-cell HO to MFBI additional band, enhancements)
+ - Added support for more hardware types from ifModelLm.xml when decoding baseband signals 
+ - Added flag –hardware to be able to specify hardware type when using Interactive Decoding
+ - Output unknown extensions in ASN1 messages
+ - Release of ltng-with-dependencies jar
+ - Uplift X2AP (WP4877, UL triggered mobility - part 2)
+ - Handle missing protocols in protocol stacks
+ - Simpler multi file input support
+ - Removed CHOICE from ASN.1 printout
+ - Uplift S1AP ([WP:5098] duTrafficHandlerSwU replacing comSigHandlerSwU)
+ - Bug fix: Corrected problem sorting traces with different types
+ - Uplift X2AP ([MH:HU30896] Change OldX2ApUeId to optional in S1msg transfer)
+ - Bug fix: Parameters with dynamic length in Events
+ - Bug fix: Stack overflow regex
+ - Add support for S1AP message: S1UE_HistoryInformation
+ - Internal improvement: Removed dependency to GSON. 
+ - Internal improvement: Add printout that that display startup arguments. 
+ - Bug fix: Handle empty log files correctly 
+ - Bug fix: Set correct name when using flag –save_translations
+ - Added debug information to see which translation server is used.
+ - Changed the way lists is handled by JSON formatter
+ - Remove blank lines in Objective trace formatter
+ - Changed JSON framework used by JSON formatter
+ - Corrected problem decoding macCtrlElementList
+ - Uplift ASN.1 protocols compiler
+ - Increased performance for JSON formatter
+ - JSON ASN.1 format lists
+ - JSON format lists
+ - JSON format additions and bugfix
+ - Internal improvements
+ - JSON format additions
+ - Support for JSON format
+
+Trace Tools R8C
+ - Internal Improvements
+
+bbfilter 4.0.8
+ - New option --auto_print_columns which will show all columns that has data in a log file. The result from this can be  used when creating your own collection or with the --show option.
+   See more at https://lmr-bbifilter.rnd.ki.sw.ericsson.se/help?section=example#example2
+ - New option --log-filter that filters out a trace or signal among all traces and signals. For instance --log_filter  UpUlMacPeCiUlL1Harqfdbk2DlInd.
+ - New option --parameters-summary-filter, which works as --parameters-summary but data is collected from a specific trace  or signal. The result can then be used with the --trace option.
+ - Added rule for handling dciBits for TDD for Golden trace.
+ - It is now possible to create more than one index in Elasticsearch and it is therefore possible to switch between log  files in Kibana. Read more at https://lmr-bbifilter.rnd.ki.sw.ericsson.se/help?section=getting-started#kibana.
+ - It is now possible to also import collections and outputs. Only collections and outputs, that not already exists, are  created. Use --importcollections and --importoutputs for this
+ - Pucch/Pusch rules have been updated so that ul.reportType is displayed more frequent in output.
+ - ulgrant information was sometimes overwritten by dl information from dci message. The effect of this was that ulgrant  information was sometimes missing in output.
+ - Proxy serversettings set in envoirment variables could not be handled by BbFilter.
+ - The --show and --show-extra options throw an error if output shortnames were used.
+ - Support for importing yaml files with connector functions has been added.
+ - Updated Matlab output to support second PUSH allocation.
+ - Output was not shown if the output id did not match the input fact id of that output.
+ - When a output fact was disconnected from a rule, the fact was deleted. This caused an error in outputs that used this  fact as an input fact.
+ - BbFilter is now able to display data from golden uplink signal (UpcDlMacCeFiUlSchedInfoInd). This feature is enabled  with the --golden-ul option.
+ - The online gui has been updated to simplify searching for facts.
+ - A new option --importrules has been added, which will let you import your own yaml configuration files from BbFilter  version 3 into BbFilter version 4. A forked rule will be created, with your signum as rule name, for each trace/signal  configuration. All necessary facts will also be created. At the moment, only default functions are supported.
+ - Added TBS size tables for HOM where ITBS > 26
+ - Updated to version R73C of LTNG
+ - Users that have been added as collaborators to a forked rule, will now also use that rule prior to the standard rule. 
+ - The number of lost traces were increased for traces that was not added in output collection, but exists in log file.
+ - The --enable-fact-creation-for did not work as expected.
+ - Owner of a resource (rule, collection etc) could not update collaborators they added to that resource,in the online gui.
+ - A new tracerule event, RULE(S) NEVER ACTIVATED. This event is created when the rule that is being traced is never  activated. The reason for this is usually that the rule has facts that are activators for the rule, but does not exist in  working memory. These facts should be marked as optional.
+ - BbFilter is now compiled for Java 8. If your jre is of an older version, you can use BbFilter 3 instead. (Available at  /proj/lterbsSwdi/bbfilter/3.1.46)
+ - It is now possible to specify a certain parameter with the --enable-fact-creation-for option. For instance: --enable-fact -creation-for UpDlMacPeCiDlUeAllocInd.transactionNo
+ - The order of output columns, when running bbfilter with --all, was not similar to previous version. This has now been  corrected. 
+ - The --trace parameter, from version 3, was not implemented in version 4.
+ - Fix for the java.lang.NullPointerException in BBTraceEventProcessor
+ - An error, that prevented fact creation for a specific trace, has been fixed.
+ - Plots were not created.
+ - BbSignalEventProcessor sometimes threw a java.lang.NullPointerException. This has now been corrected.
+ - For TDD logs, harq values for secondary cells were not displayed.
+ - It is now possible for an output to have both Esper statement and formatter/mapping.
+ - Fix for error java.lang.RuntimeException: uncomparable values <<nullnull>>. Occured when a rule were to be executed.
+ - Fix for error that made headings occurred on every row when exporting to csv file.
+ - An error could sometimes occur when creating collection in the online gui.
+ - Param for enable fact creation for a specfic signal/trace name. Usage: --enable-fact-creation-for  UpUlMacPeCiUlL1Measrprt2UlIn
+ - Output facts for combined cell configuration
+ - BbFilter has been completely rewritten and a rule engine has been implemented with the intention to produce more relevant trace data from log files. An online configuration tool has also been implemented to make it easier to create and update configuration for BbFilter
+
+Flowfox 3.8.1
+ - Added LTE TMSI filtering (-tmsi option) - thanks Wicky
+ - Added WCDMA IMSI filtering support in HTML output - Via Michael S.
+
+
+--------------------------------------------------------------------------------
+Package R3F
+
+LTNG R81A
+ - Added filter option
+ - Only print complete trace for fragmented HiCap traces
+ - ASN.1 Uplift of X2AP (WP4852, UE Partner Collaboration feature - Feature 2)
+ - Improved CTF trace handling
+ - Added support for reading several CTF traces
+ - ASN.1 Uplift of X2AP for V1250 EXT6 and UehNwIfAp
+ - Always print 4 bytes for BFN.
+ - Ignore produceId for new basband translation files.
+ - Change log level to info instead of error when closing connection to trace router.
+
+Trace Tools R8A
+ - Add duration timer.
+ - Add slf4j with Logback logging. Change to use cliutils in testtools project instead of Posix command line parser.
+
+bbfilter 3.1.47
+ - Added new output with info if SR is strong or weak for pucch.
+ - Parameter --spottrace that can be used if you want to know when a trace has been spotted, when piping output to file.
+
+Flowfox 3.7.9
+ - Fixed The ueRef arguement now filters on partial ueRef ids
+ - Added Event info to measId in MeasurementReport messages (LTE) - thanks Mohan
+ - Added SQL LTE event output in sqlite3 format (-sqlite3)
+
+
+--------------------------------------------------------------------------------
+Package R3E
+
+LTNG R72A
+ - Streamlined logging frame work to use Logback
+ - ASN.1 (LPPA, RRC, S1AP, X2AP, NBAP and RRC UTRAN) uplift
+ - Bug fix: Corrected name of fields for T3324 and T3412 in NAS ESM and EMM messages
+ - Bug fix: Get Google Protocol Buffer file based on Iteration and Revision with different URL.
+ - ESM and EMM uplift of NAS to Rel-13 June.
+ - Added decoding of TMSI based NRI container, T3324 value and T3412 extended value in Tracking Area Update Request in NAS.
+ - Added extra decoding of T3324 value and T3412 extended value in Attach Request in NAS.
+ - Added decoding of T3324 value, T3412 extended value and TMSI based NRI container to Attach Request in NAS.
+ - Optimize IfModelLm.xml load from translation storage
+ - Added flag Ðsave_translation. This saves the downloaded translation files to desired directory.
+ - Internal improvements
+
+Flowfox 3.7.8
+ - Fixed HTML tag problem when binary data contains special HTML tag characters
+ - Fixed Filtering of decoded CRT event files (was an incomplete implementation)
+
+
+--------------------------------------------------------------------------------
+Package R3D
+
+LTNG R67D
+ - Internal improvements
+ - Added support for FCS in Ethernet
+ - Handle sourcePort as well when decoding GTP-C version 2
+ - Added basic decoding of GTP-C version 2
+ - Bug fix for MAC UL-SCH value formatting
+ - DUL20 split support
+ - Updated web path for dus32 translation file
+ - Bug fix: S1AP-Ericsson-PDU message
+ - Try accessing Translation Storage with proxy settings in addition to the regular non proxy access
+ - Allow TCP stream indicator first in event file
+ - Handle signed data values from RCSSIM logs. Handle endianess for Google Protocol Buffers messages
+ - Uplift ASN.1 protocols compiler
+
+Flowfox 3.7.7
+ - Added Flowfox now lives in Airlink. Changed URL to match this.
+ - Fixed FlowfoxProtocolStatus missing RANAP hash element - thanks Michael Schmude
+
+--------------------------------------------------------------------------------
+Package R3C
+
+LTNG R61A
+ - Output type name for items in Òsequence ofÓ in ASN.1 messages
+ - Re-deploy to deploy sources to Nexus
+ - Bug fix: Removed R-State validation, S1AP selection refactoring
+ - Update for cli message decoder regarding S1SourceToTarget containers
+ - Bug fix: DUS32 baseband translation loading
+ - Update for cli message decoder regarding S1AP-Ericsson-PDU messages
+ - Support for S1AP-Ericsson-PDU containers
+ - Bug fix: Print parsing errors for HiCap translation type 2 and 3
+ - Objective Systems uplift to 6.8.0, RRC uplift
+ - Bug fix: translations override option for triSignal
+ - X2AP uplift
+ - Suppress HiCap sequence number warning for freeze periods (corrected)
+ - Suppress HiCap sequence number warning for freeze periods
+ - Validate SDK delivery
+ - Change delivery path in PLM toolbox
+ - Support for remote debugging
+ - Bug fix: Identify correct install directory in PLM toolbox
+ - Bug fix: Missing parsing of arguments to ltng-csvwriter
+ - Bug fix: Removed ÒFailed to load Google Protocol Buffer jar fileÓ printout 
+ - Add support for typdefs with sterotype struct in ifModel
+ - Fetch translation files and Google Protocol Buffer files based on Product Identity (e.g. ÒCXP102051/23 R3FÓ) 
+ - Bug fix: Corrected error when decoding RRC UL-DCCH MeasurmentReport messages 
+ - Internal improvements
+ - Bug fix: corrected error when the -t flag with a http address was used in cygwin
+ - HiCap sequence number warning will now add consecutive missing sequence numbers into a single warning
+
+Trace Tools R6J
+ - Bug fix: Moved install directory in PLM toolbox
+ - Bug fix: Identify correct install directory in PLM toolbox
+ - Release in Eiffel Nexus
+ - Bugfix for crash that occured when connecting new clients while receiving traces
+ - Reverted startup scripts to be perl based
+ - (build failure)
+ - No changes, just push for deployment to PLM toolbox
+ - Bug fix, support jar was compiled with Java 1.7, now 1.6
+ - New start script and packaged with maven
+
+bbfilter 3.1.46
+- Updated config for UpUlL1PeEiAllocationInd with check that harqprocessid has valid value.
+- Updated config for qam256 so that index table 2 should only be used when qam256 = 3 when max modulation is ongoing.
+- Updated to newest version of LTNG
+- Updated the function for flushing buffer when reading streaming log data from a trace router. This function is activated with the --rt parameter 
+  and should be used together with -r -m  (e.g. -m x.x.x.x -r x.x.x.x --rt 1000 for flushing buffer every second). 
+- Updated mapping for ul.dtx with empty string for invalid values.
+- Updated to newest version of LTNG
+- Support for %r parameter value format. (SQ15 type). 
+- Added support for expressions in conditional functions.
+- Added support for splitting large graphical web reports into one web page per plot. This is activated with parameter --splitreport
+
+Flowfox 3.7.6
+ - Fixed X2AP cause code missing and added ueX2Id value to flow - thanks Takahiro
+ - Added New option to Filter on protocol and message/attribute using .lffrc file (-ff) - thanks Rob T.
+
+--------------------------------------------------------------------------------
+Package R3B
+
+LTNG R53H
+- Bug fix: PDCP RoHC decoding for IPv6
+- Only display time for HiCap traces when they contain a valid HiCap time 
+- corrected eNodeB reader using interface flag
+- Bug fix: PDCP RoHC decoding
+- Bug fix: Rounding error in time calculation for constants
+- Bug fix: RLC parsing
+- Bug fix: for X2AP decoding in G2
+- featureGroupIndicators are decoded according to Annex B in 36.331 for Release 10
+- Absolute sort option added (-a flag), which post-process trace files and sort the traces based on timestamp.
+- Truncation of binary fields larger than 1024 bytes has been removed
+- Bug fix: translation load from eNodeB
+- Support for loading Dus52 translation files directly from eNodeB with -t flag
+- Improved translation handling
+- Corrected option to print memory offset (-position) of field in trace for ASN.1 messages
+- Option added to print memory offset of field in trace
+- Handle null pointers in GPB selector and Tri Signal selector and add trace strings to both LRAT and WRAT cache when loaded with -bb_trace_strings
+- Handle HiCap header version 4 and added duId to LTNG printout.
+
+bbfilter 3.1.44
+- Added optional output parameters for number of prb for two codewords.
+- Added optional output for bbBearerRef obtained from dlUeCandidateInd
+- Support for bbUeRef[%d] format
+- It is now possible to specify bbUeRef parameter for trace id in input specification.
+- Updated to newest version of LTNG
+- Number of prb is now also collected from UPCDL73
+- If cellId parameter is missing in trace, the cell value can be fetched from bbUeRef. This has to be specified in input specification for that trace id.
+- New UPC UL naming for sfn/sf in traces.
+- CQI and RI were not always displayed for SCell when CA is used. Due to this, the CA function has been improved for better handling of SCell data.
+
+Flowfox 3.7.5
+ - Added Optimisation improvements for Flowfox (Terminal)
+ - Added LTNG changes to eUTRANcellIdentifier output in X2 messages - thanks Takahiro
+ - Added UE Category information in r10 extensions (Carrier Agg) - thanks Christoph Schaefer
+ - Fixed NAS4G printouts from UE when S1NASNonDeliveryIndication ongoing - thanks Jan Gustavsson
+ - Added G2 missing timestamps to support LTNG decoding of ASN logs
+ - Fixed 3G PCAP debug output
+ - Fixed MTD sinr reporting aligned with LTNG output
+
+--------------------------------------------------------------------------------
+Package R3A
+
+LTNG R50A
+- X2AP uplift
+- Support loading translations using Product Identity
+- RRC uplift
+- Bug fix: Corrected problem in LTEEventSelector
+- Bug fix: Corrected problem in error print handler
+- Replace -g flag to -t for GPB
+- S1AP and X2AP uplift
+- Bug fix: SDK deployment script
+- Support for float content type
+- Bug fix: Present missing HiCap and CPP fragments
+- Bug fix: Improved WRAT HiCap signal number handling
+- Bug fix: If LTNG could not reach one of the translation backend servers it no longer pauses when decoding is done
+- Bundle loaded GPB jar file with loaded WRAT baseband translation file
+- Bug fix loading translations from Translation Storage
+
+bbfilter 3.1.42
+- The table for mapping the internal UE release cause from signal ueReleasdInd, was out dated and has been updated.
+- Added support for handling traces with 256QAM modulation where mcs are fetched from TBS index table 2.
+- Invalid values for downlink bandwidth and cfr length caused bbfilter to stop running. These values are now ignored.
+- If TBS2 is received before TBS1 and swap flag is false, the transport blocks are placed in correct order.
+- When saving a specific configuration file, the file content was not stored in a correct way.
+- Calculation of number of PRB values, with resource allocation type 2, has been rewritten.
+- Updated TBS tables to support calculated number of PRB values greater than 100.
+- UpUlMacPeCiUlMacCtrlInfoInd is taken into consideration whether HARQ is DTX or not. If dtx is for harq ack, then dtx-a is printed.
+ - Problem when decoding log file with ASN1 signal fixed. Error messages were Nullpointer and Strange UE.
+
+Flowfox 3.7.1
+- Fixed Start of optimisation improvements for Flowfox (csv writer)
+- Added 3G PCAP protocol support - thanks Michael Schmude
+- Added HTML colour output alignment to Ericsson design guidelines
+
+
+--------------------------------------------------------------------------------
+Package R2L
+
+LTNG R44A
+- Add gson-2.2.4 for LTNG
+- Decode TCP packets and LTEEvents in TCP packets. Support loading Google protocol buffers from Translation Storage.
+- Bug fix: HiCap BFN time parser
+- Bug fix: improved G2 te log read parser. Use EMCA instead of ULMA in HiCap decoded result
+- Support for TRISignal and GPB over HiCap
+- Bug fix: Support for little endian in GPB
+- Bug fix: Show HiCap parsing errors
+
+
+--------------------------------------------------------------------------------
+Package R2H
+
+LTNG R42C
+- Bug fix: Decode LRAT RRC messages contained within TRI traces
+- Print loaded WRAT baseband translations at startup
+- Added support for little endian in WRAT signal decoding. Bug fix WRAT baseband translation handling
+- Update of Google Protocol Buffers message formatting.
+- Allow all files for stdin -s flag. Formatting GPB message content without : after field name.
+- Changed formats for bit and hex strings, added support for loading wrat baseband file wratBbL1TraceTranslation.xml, hides cmTbPayLoad values and gives the possibility to hide fields
+- Bug fix TRI text reader
+- Bug fix LTE event date handling
+- Updates for TRIlog with support for text in the beginning of logfile
+- Updates for plmnId and imsi in NAS, added lte protcols for CFT and TRI trace
+- Uplift RRC
+- ASN.1 protocol replacement, Google Protocol Buffer format updates for hex and decimal messages
+
+
+Flowfox 3.7.0
+- Added support for M3AP messages, displayed as S1AP
+- Fixed mobileIdentity in 4GNAS to dispaly in Hex as not decimal and could be confusing
+- Fixed timestamp information for 3G decoder
+- Fixed parsing of 3G events and message names
+- Fixed error with parsing MBMS message names
+- Fixed error in 4GRRC that failed message name parsing
+
+BBFilter 3.1.34
+- Support for ul grant information sent in same tti. Information from dci messages are separated and used in dl and ul columns.
+- noOfCce are stored for dl and ul separately and can be displayed with parameter --show-extra dl.nrOfCce or --show-extra ul.nrOfCce
+- New collection, ulgrant, for displaying specific ul grant data. (usage --col ulgrant)
+- Support for showing more than one collection. (usage --col BbFilter ul,ulgrant)
+- Support for using specific local config files, e.g. use local version of function.yaml and default versions of the rest of the yaml files. (usage --config <path>,<yamlfilename>)   
+- Modulation is locked to QPSK when signal is common. 
+- To see all changes use bbfilter --release-notes
+
+--------------------------------------------------------------------------------
+Package R2G
+
+LTNG R38B
+- Rebuild with Java 1.6
+- Support for Google Protocol Buffers
+- NBAP support & updates
+- WRAT Signal decoder
+- S1AP uplift
+- New event version handling iteration 21+
+- Bug fix RRC / RRC UTRAN
+
+Flowfox 3.6.3
+- Fixed messageName handling in LTE protocols as X2AP using isMessageSet
+- Added cellReselectionPriority to RRC4G protocol
+- Fixed S1AP messageName handling for S1Setup/Failure messages
+- Added More S1AP array message handling
+
+--------------------------------------------------------------------------------
+Package R2F
+
+LTNG R33B
+- Bug fix StdInReader EOF
+- HiCap added support for %f
+- Bug fix PCAP NG
+- S1AP uplift
+- X2AP uplift WP3547 (CA-Aware IFLB, CA triggered redirection)
+- Added support for decoding GTP-U
+- Bug fix HiCap sequence number lost warning
+- Bug fix SCTP handle multiple chunk payloads
+- Bug fix Ethernet protocol handle padding
+- Added RTT protocol
+- Improve Interface Model union parsing
+
+Flowfox 3.5.9
+- Fixed issue with timestamps for 6 digit millisecond values
+- Added dl-CarrierFreq to sib5 4GRRC and SubscriberProfileIDforRFP to 4GS1AP and 4GX2AP
+- Fixed issue with UE_ message names in event files
+- Added a suffix to array parameters for SQL
+- Added parameters to SQL insert statements
+
+BBFilter 3.1.28
+- New user-contributed collections for rlcdl, rlcdlretx, pdcpdl
+- Support for up to 4 layer spatial multiplexing in CFR decoding and DCI decoding.
+- LTNGs translation servers status are now tested at bbfilter.
+- Support e-mailbox address inserted in help.
+- To see all changes use bbfilter --release-notes
+
+--------------------------------------------------------------------------------
+Package R2D
+
+LTNG R27B
+- Fixed problem with path separator in Cygwin
+- Added support for HiCap version 3
+- Uplift RRC ASN.1
+- Added support for multiple feature group indicators
+- Empty translation directory will give a warning instead of an error
+
+Flowfox 3.5.4
+- Added Support for SQL Syntax output with Events (-sql option)
+- CSV and SQL format now possible through STDOUT
+- Fixed formatting issues with MySQL and MSSQL
+- Fixed various parsing issues
+- Fixed base date issue for LTE Event files
+
+BBFilter 3.1.22
+- Support for new product number and revision number format.
+- Added support for new fields, internalReleaseCause and s1ReleaseCause.
+- Uplift of LTNG to a newer version
+
+--------------------------------------------------------------------------------
+Package R2C
+
+LTNG R24A
+- Event translation ID handling improved for iteration 22. Support event invalid values
+- New RRC UTRAN version (R5B11)
+- Added support for metadata in lteRbsBbTraceTranslation.xml, truncated sequence number warning
+- Fixed problem with IPv6 in ltng-pcapwriter
+- Improved CTUM file support. Added MNC codes for Italy
+- Decode UTRAN to LTE handover
+- Improved sorting of traces based on time, ENodeB and TraceReader reader internal improvements
+- Bugfix for events support variable length fields. Bugfix LTNG translation startup timing
+- Decode RRC_CSFB_PARAMETERS_RESPONSE_CDMA2000 for LTE events
+- Added initial support for coretypedef format attribute in Interface Model
+- Improved CPP fragment handling
+- Improved signal parsing error handling
+- Improved interface model parsing for UpUlMacPeCiUlMacCtrlInfoInd signal
+- Deadlock fix
+- Corrected handling of integer parameters larger than 4 bytes in LTE Events
+
+BBFilter 3.1.21
+- First version of graphical HTML reports with plots. Use --reports to see available reports and --report <name> to
+  generate a report. Define new reports in reports.yaml and plots.yaml.
+- Added error message when using the wrong translator files (black builds). Also added a new -o flag to override.
+- To see all changes use bbfilter --release-notes
+
+--------------------------------------------------------------------------------
+Package R2A
+
+LTNG R18A
+- Improved security protected NAS message decoding, gzip support
+- Fixed error decoding singal UP_ULMACPE_CI_UL_MAC_CTRL_INFO_IND
+- Deadlock fix, remove slash in CPP if no link handler
+- New RRC UTRAN version, PCAPNG support, New Cpp format support, Wildcard support
+- Improved Interface Model parsing
+- Output event header before all events and footer last, regardless of timestamps
+- Corrected service type in NAS extended service request
+
+Flowfox 3.3.3
+- Fixed issue with parsing EVENT_PARAM_GLOBAL_CELL_ID
+- Fixed protocol detection for L14A
+- Fixed TMSI lookup in S1 Paging messages
+
+BBFilter 3.1.16
+- Workaround to not use pdcch_ind data when using TM4 since it is currently giving incorrect values for mcs and tbs
+- various bug fixes
+- To see all changes use bbfilter --release-notes
+
+--------------------------------------------------------------------------------
+Package R1H2 (Emergency Package)
+
+Trace Tools
+- Topic: "Viewer showing error: NoSuchFieldError". Added correct com.ericsson.usage.jar file to Trace Tools.
+
+
+--------------------------------------------------------------------------------
+Package R1H
+
+Flowfox 3.03
+- Fixed an issue with recognising UETR/CTR files with the latest LTNG
+- Changed diagnostic functions
+- Fixed message names in NAS, added parameters in 4G (S1, NAS) and 3G (RRC, RANAP, NAS, NBAP)
+- Added diagnostics
+- Changed the ericsson.com icon to the Ericsson logo in HTML
+- Fixed display of line references with skipped NAS messages
+- Fixed META support for LTE Exceptions
+- Fixed bug with ueRef Filter for LTE Exceptions
+- Fixed bug with displaying QCI value in S1
+- Fixed bug with CSV file output format
+- Fixed output file extension selection with HTML and CSV formats
+- Fixed parsing for LTE Exceptions
+- Added parsing for INFO and ERROR traces
+- Changed handling of UE_GENERAL message names in HTML, fixed filtering on special event tags in HTML
+
+LTNG R15A
+- Support 0x hex format for interactive decode
+- Ziplog HTML input keep %lt; and %gt; to allow viewing resulting file in browser
+- Bug fix SCTP and PDCP
+- Display startup arguments and translation information for ltng-decoder
+- Bug fix end of transmission handling for ltng-decoder -s
+- Removed trace sorting for ziplog traces. Format ziplog traces a bit more like decode did. Ziplog protocol now outputs text for non ziplog traces
+- Load translations by UP fixed for Cygwin. Added flag to disable trace buffer write operations for ltng-pcapwriter
+
+--------------------------------------------------------------------------------
+Package R1G2 (Emergency package)
+
+LTNG R12G
+- Corrected error loading translation files in Cygwin
+
+Package R1G
+
+Flowfox 3.02
+- Fixed include pattern for PM Events
+- Added CSV3, option doesnt print parameter names (-csv3)
+- Fixed an issue with NAS 4G address handling
+- Fixed handling hyphen in input args and general fix for get option
+- Fixed parsing of enb and cell IDs in X2 messages
+- Changed parsing of EVENT_PARAM_GLOBAL_CELL_ID to get eNB and cellID
+- Fixed issue with selPlmnId in RRC
+- Added -line option, which provides a line number reference to the logfile
+- Fixed bug on parsing long cell IDs
+- Fixed bug on getting S1 cause parameter
+- Changed to modern fonts in HTML HelveticaNeue-Light and SegoeUILight
+- Changed file paths for Cygwin usage
+- Fixed handling of CONTINUATION traces
+- Fixed a bug with -w flag - white/no colour
+
+LTNG R12F
+- Bug fix support LTE events from file
+- Support for new PM recording file format (PT3)
+- RRC 11.4.0, RRC UTRAN 11.7.0 and X2AP 11.4.0
+- Added check for lost sequence number for HiCap traces, added support for MAC over HiCap traces, added support for loading translation files by UP version, bug fix pcap writer
+- Improved translation file handling
+- Added interactive decode, added support for ziplog_verbose in HTML format, added support for string list version in ziplog_verbose, added support for printf, added support for protocol LinuxCookedCapture
+- Corrected error with translation storage, Add support for GERAN SI container in RIM
+- Improved signal decoding, Improved SCTP decoding, Added support for hardware dependent constants in ifModelLm.xml
+
+BBFilter 3.1.3
+- Support for MAC long BSR (4 new columns, ul.bsr0,ul.bsr1,ul.bsr2,ul.bsr3)
+- Fixed: To read traces from trace monitor or router should now work again
+- Fixed: Memory leak
+- Updated to latest ltng
+- Moved cache of translator files to be stored in ~/.bbfilter instead of current path (only applicable for standalone bbfilter)
+
+--------------------------------------------------------------------------------
+Package R1F
+
+Flowfox 3.01
+- Support for RNC and ENB ASN trace log files
+- Support for UETR/CTR from both LTE/WCDMA
+- Support for LTNG and WCDMA decoder formats
+- Supported protocols include 3G (RRC, RANAP, RNSAP, NBAP, NAS), LTE (RRC, S1, X2, NAS), SCTP, ALCAP, UEH&LTE Exceptions, LTE MTD, UETR/CTR PM Events
+- Realtime "terminal" flow for both 3G and LTE
+- HTML visual flow for both 3G and LTE
+- CSV format for both 3G and LTE
+- Legacy filtering options from both WRAN Flowfox and LTE Flowfox
+
+LTNG 2.14.5
+- Improved signal decoding
+- Improved Interface Model parsing
+- Corrected version number error in LTNG 2.14.2
+- Improved CPP time stamp, decreased memory usage, removed sequence number check for baseband traces
+- T-LSV release version
+- Added support for MicroDUS translation file. New version of RRC UTRAN. Improved ASN.1 decoding. Improved interface model parsing
+
+BBFilter 3.1.1
+- graphical html reports
+- various bug fixes
+- To see all changes use bbfilter --release-notes
+
+--------------------------------------------------------------------------------
+Package R1E
+
+LTNG 2.13.0
+- Added ltng-pcapwriter, add support for decoding FeatureGroupIndicators in RRC
+- Added support for Target-ToSource-TransparentContainer in S1AP HandoverRequestAcknowledge, added warning for corrupted HiCap headers
+- T-LSV release version
+- New release of RRC and X2AP
+- Added network interface flag to ltng-decoder start script
+- Added network interface flag for eNodeB reader
+- Corrected error sorting traces based on time
+- T-LSV release version
+- Corrected NAS attach request IMSI formatting
+- Corrected reader deadlock
+- Corrected error in HiCap version 2
+- Improved RIM decoding. Added MNC for the Netherlands
+- Add support for decoding ROHC, improved performance when receiving traces from TraceRouter or eNodeB, corrected error receiving event streaming from trace router
+- Improved Ziplog file detection
+
+Trace Tools 4.3.2
+- Handle error getting receive buffer size
+- Improved TCP event handling. Added startup information to TraceViewer output
+
+Flowfox 2.82
+- added B2 event info
+- bug fix in NAS decoding
+- various NAS fixes due to formatting diff compared to regex
+- extra parameters for RIM additions
+
+BBFilter 3.0.19
+- UPCDL73 changed from connector to function to better ignore values from S-RNTI and RA-RNTI
+- UPCDL76 pqWeight mapped into dl.seWeight
+- Made summary columns optional so that there are less rows in the output (in one example 50% of rows were removed)
+- To see all changes use bbfilter --release-notes
+
+--------------------------------------------------------------------------------
+Package R1D
+
+LTNG 2.9.2
+- Corrected version numbering of 2.9.1 release
+- Corrected error decoding HiCap in logfiles from BTE
+- Corrected error in RIM decoder, added support for decoding RRC UTRAN message in RIM message
+- T-LSV release version
+- Corrected error in PDCP decoder
+- Added support for HiCap version 2 in ltng-csvwriter
+- Improved robustness for incorrect input
+- Added support HiCap version 2, Increased the accuracy of the HiCap timestamp from 67 µs to 1 µs, Corrected error decoding event streaming
+- Added support for HiCap with trace type 2 without signal data
+- Added sorting of traces based on time and BFN, added support for VLAN
+- Improved error handling for baseband signals
+
+--------------------------------------------------------------------------------
+Package R1C
+
+LTNG 2.6.0
+- Added support for decoding RANAP and RRC UTRAN in message S1AP Handover Required
+- Updated version to R5L for T-LSV 5
+- Corrected classpath error in TestTools.pm, Improved interface model union parsing
+- Fixed error decoding fragmented HiCap traces with trace type 3
+- Fixed build error in LTNG 2.5.4
+- Improved handling of translation text files loaded together with an empty strid text file
+- Added a warning if an empty translation text file is loaded
+- Added a warning if an empty translation xml file is loaded
+- Added mapping for missing signal definitions, primarily UPC DL MAC signals
+- Added flags for signals, trace objects and trace groups in ltng-decoder
+
+LTE Flowfox 2.77
+- Cleanup of subroutines
+
+BBFilter 2.27
+- Fixed problem with timingAdvanceError
+
+--------------------------------------------------------------------------------
+Package R1B
+
+LTNG 2.4.4
+- Handle RbsEhbEventLm.xml missing on eNodeB
+- Added support for Dynamic Byte Array used in ifModelLm.xml for signal UpDlRrcCPeRrcCDlComDataInd
+- Support for unknown text in CPP text files, Fix for missing signals, trace objects and trace groups when string list file contains several stringListVersions, Improved translation storage handling, Added support for trace type filter, New release of RRC, S1AP and X2AP, Support for MAC, RLC and PDCP
+
+LTE Flowfox 2.76
+- Increased the message line buffer to 4096 in the case of large messages
+
+Trace Tools 4.3.0
+- Added support for filtering on trace type in Router, Viewer and Capture
+
+BBFilter 2.26
+- Fixed another problem when using ltng traces
+- Fixed problem with sr when using ltng traces
+- Fixed problem with dl harq
+- Fixed problem with cfg when using ltng trace
+- Improved read of ltng traces. Other misc fixes
+
+--------------------------------------------------------------------------------
+Package R1A
+
+LTE Flowfox 2.75
+- No change
+
+LTNG 2.3.0
+- No change
+
+Trace Tools 4.2.0
+- Updated start scripts
+
+Baseband Filter 2.21
+- No change
+
+--------------------------------------------------------------------------------
+Package 2.75
+
+LTE Flowfox 2.75
+- No change
+
+LTNG 2.3.0
+(ehhkjjn, edahjon)
+- Updated start scripts
+- Added separate version jar files
+- Added S1AP, X2AP and M3AP as SCTP payload
+- Added –override (-o) to ltng-csvwriter, changed –output (-o) to –csvoutput (-c) in ltng-csvwriter
+- Corrected error in time stamp for LTE Events
+- Added support for Wavejudge pcap, added time stamp for LTE Events, added index for list items in CSV Writer
+
+Trace Tools 4.2.0
+(ehhkjjn, edahjon)
+- Updated start scripts
+
+Baseband Filter 2.21
+(eemheah)
+- Support for multiple CFR in puschReportList
+- Rewrote the code that parses ltng traces due to problems with some signals
+- Correction for negative ulGain
+- Some other minor updates
+
+--------------------------------------------------------------------------------
+Package 2.74
+
+LTE Flowfox 2.74
+- No change
+
+LTNG 2.1.7
+(ehhkjjn, edahjon)
+- Added alternative address for translation storage, changed timeouts for LTNG backend communication
+- Added support for RDR in StrId traces, added index for list items in CSV Writer
+- Improved string handling for LTE Event parameters
+- Added support for use valid for binary LTE Event parameters, fixed parsing of UP_ULMACPE_CI_UL_MAC_CTRL_INFO_IND signal
+
+Trace Tools 4.1.1
+(ehhkjjn, edahjon)
+- Added log rotation for capture. Added possibility to monitor all traces from the router (leave out the monitor flag). Added RRT stream trace support.
+- Added more information to RRT stream viewer output
+
+Baseband Filter 2.19
+(eemheah)
+- Added support for prbResourceIndicatorType2Localized
+- Added support for trace with dlAssignableBytes
+
+--------------------------------------------------------------------------------
+Package 2.73
+
+Documentation
+(edussim)
+- LTE Baseband Tutorial
+- LTE Observability Tutorial
+- FAQ
+
+LTE Flowfox 2.73
+(epaerez, edussim)
+- Added endTs and startTs support to list mode output
+- Updated RRC release and establishment cause
+- Added NAS IdentityRequest/Response information
+- Fixed the X2 Continuation messages (seen with X2SetupRequest)
+- Empty ASN messages are now hidden unless -a is used
+
+LTNG 2.1.3
+(ehhkjjn, edahjon)
+- Added LPPa decoding
+- Added support for enumeration in LTE Event
+- Improved LTE Event file handling
+- improved baseband signal decoding
+- Fixed parsing of UP_ULMACPE_CI_UL_MAC_CTRL_INFO_IND signal
+- Added missing RRC messages included in LTE Event
+- Corrected error decoding HiCap sent in CPP traces
+
+--------------------------------------------------------------------------------
+################################################################################
+
+
+
+########## Change log (OLD) ####################################################
+2.72     (edussim) PKG: LTE Flowfox 2.72
+                        - Made backwards compatible with LTNG1
+                        - More changes to NAS for LTNG2 output
+                        - Now displaying non decoded messages too
+                        - Modified parsing of S1 and X2 traces (for L12B)
+         (epaerez)      - Fixed missing X2AP decode due to CONTINUATION
+                        - Fixed RRCReconfig embedded in RRCHandoverCommand
+         (ehhkjjn) PKG: LTNG 2.0.6
+                        - Improved decoding of fragmented CPP traces
+                        - Corrected error in IPv6, added support for default LTE Event XML
+                        - Corrected decoding errors in RRC and NAS
+
+2.71     (epaerez) Fix: LTE Flowfox 2.71
+                        - LTE Cell and UE Trace fixed to work with new LTNG
+
+2.70     (edussim) PKG: LTE Flowfox 2.70
+                        - Support for LTNG 2.x.x decode format
+                        - WARNING: Not compatible with LTNG 1.x.x
+         (ehhkjjn) PKG: LTNG 2.0.3
+                        - Support for decoding CTUM
+                        - Improved NAS decoding
+                        - Smaller, the file ltng-2.0.0.tar.gz is 5.5 MB instead of 25 MB for LTNG 1.16.4
+                        - Faster, in our tests LTNG 2.0.0 has been about 30 % faster compared to LTNG 1.16.4
+                        - The -p flag is not needed, the protocol stack in LTNG 2.0.0 has support for all LTE releases so the -p flag has been removed
+                        - Removed the file ${ltngversion}.jar
+                        - Corrected error decoding NAS over RRC, added support for multimon.pl printouts in logfiles
+                        - Corrected error decoding Target-ToSource-TransparentContainer in S1AP
+
+2.66     (eemheah) PKG: bbfilter 2.17
+                        - Added support for new format of dlAssignableBytes trace
+                        - Updates for L13A and improved handling of candidatesInd signal to show ueRef
+         (eemheah) PKG: decode
+                        - Added support for DUS41 xml files
+         (epaerez) PKG: multimon 1.3
+                        - adds .monrc config file support
+         (epaerez) PKG: batEvDec.pl 1.1
+                        - added gzip
+         (ehhkjjn) PKG: LTNG 1.16.4
+                        - Improved: CSV writer, CppTextReader, fragmented trace handling.
+                        - Added Ericsson X2AP PDU decode to L12B and L13A
+         (edussim) Mod: Flowfox
+                        - Changed the ENBID display in list mode
+
+2.65     (edussim) Add: Flowfox:
+                        - Added a --csv2 option to create the original CSV format
+                        - Added support for Internet Explorer 9
+                        - Fixed the DOS formatting in Multimon
+         (esmidav) PKG: TET.pl modified to load correct XML libraries (thanks to David Smith)
+         (ehhkjjn) PKG: Updated LTNG 1.16.2
+                        - Improved translation loading performance and handling of default translations
+                        - Improved baseband StrId decoding
+         (eemheah) PKG: Updated decode
+
+2.64     (epaerez) Fix: Fixed regex to cater for a - in protocol name (thanks Janaka)
+         (ehhkjjn) PKG: Updated LTNG 1.16.0
+                        - Added support for DUS41 translation file
+                        - Updated RRC, S1AP and X2AP to 3GPP release 10
+                        - Added support for M3AP
+                        - Added support for Java 1.7
+         (epaerez) PKG: Updated Multimon 1.2
+         (eemheah) PKG: Updated bbfilter 2.15
+
+2.63     (epaerez) Add: S1AP elements (S1SetupResponse) using per formatted @message
+                   Add: X2 elements for X2Setup(Request/Response)
+                   Add: Sub formatMessage to fix multiline single elements (list/array)
+                   Add: Added more RRC parameters
+                   Add: Some CSFB parameters
+         (epaerez) PKG: Updated multimon 1.1
+         (eemheah) PKG: Updated bbfilter 2.14
+
+2.62     (edussim) Add: Added RRC parameters
+         (epaerez) PKG: Updated batEvDec 1.02
+         (ehhkjjn) PKG: Updated LTNG 1.14.6
+                        - Changed multiple file syntax. Use: -f '"file1"
+                          "file2"', ASN1 decoding changed - ignore constraint
+                          errors, RIM decoding improved
+
+2.61     (epaerez) Mod: Commented out ASN hash sub until verification is
+                        completed
+         (ehhkjjn) PKG: Updated LTNG 1.14.5
+                        - LTE event parsing updated, RIM parsing updated,
+                          changed protocol stack name L12A+ to L12A, added
+                          protocol stack L13A
+
+2.60     (edussim) Mod: Improved CSV format now separates all parameter values
+                   Add: customer format without trace headers --cxth option
+
+2.59     (edussim) Add: Support for filtering on multiple UErefs(-u <pattern>)
+                   Add: --xdate option for printing the date in the timestamp
+                   Fix: SIB display corrected
+                   Add: Public Warning System support
+         (epaerez) Add: New method of processing ASN messages
+         (esmidav) PKG: Updated TET to better include perl libraries
+
+
+2.58     (eemheah) PKG: Updated bbfilter 2.12
+         (eemheah) PKG: Updated decode
+         (epaerez) PKG: Added batEvDec.pl script (batch event decoding)
+
+2.57     (edussim) Fix: Cell ID now displayed for L12B
+                   Fix: UE references for L12B extended further
+         (ehhkjjn) PKG: Updated LTNG 1.14.4
+                        - Fixed bug with LTE event parsing
+                        - Interface model union parsing improved
+
+2.56     (edussim) Fix: Fixed an inclusion pattern bug
+                   Mod: Added support for longer UE References L12B
+         (edussim) Fix: TET.pl not displaying brackets in timestamps
+                   Mod: Changed TET.pl to always use XML modules
+
+2.55     (edussim) Add: Support for OSS UETR/CTR CSV files
+         (ehhkjjn) PKG: Updated LTNG 1.14.2
+                        - Added IPv6 over VirtualLAN
+                        - Fixed bug with bfn - utc time conversion
+                        - Added support for
+                          RRC_CONNECTION_RE_ESTABLISHMENT_REJECT in PM Event,
+                          added support for Trace Router in LTE TraceTools
+                          4.0.0
+         (ehhkjjn) PKG: Updated LTE Trace Tools 4.0.0
+                        - Added option to send 'kill' and 'test' command from
+                          viewer to router. Improved compatibility between
+                          (future) versions (added SERIAL_ID). Not compatible
+                          with 3.x.x versions!
+         (eemheah) PKG: Updated bbfilter 2.11
+                        - Updated for some modified traces. New column to show
+                          UL PRB position (when using -ul flag).
+
+2.54	   (epaerez) Add: --event, Ability to output Cell/UE Trace events (non
+                        ASN) in flow - thanks Robert T. and Renato S.
+	                Mod: S1AP cellIdentity output from straight decimal
+                        conversion to decimal(eNBId.CellId) - thanks Samid T.
+         (edussim) PKG: Added XML::Parser to the package.
+                   PKG: Updated LTNG 1.13.1
+                        - Added protocol stack for L12B, added support for RRC
+                          Connection Reject in PM Event, improved memory
+                          handling for fragmented HiCap traces, updated RIM
+                          decoding
+                        - Fixed problem with ConcurrentModificationException
+                          when decoding fragmented HiCap traces, updated RIM
+                          decoding
+                   PKG: Fixed Installer input priority
+         (eemheah) PKG: Updated bbfilter 2.10
+                        - Improved support for ltng traces
+                        - Updated for modified L12A traces
+
+2.53     (edussim) Fix: Issue with java paths for ltng and router/viewer fixed
+         (edussim) PKG: Updated ltng 1.12.7
+                        - Improved memory handling for HiCap
+
+2.52     (edussim) Add: Added documentation to the package
+         (edussim) Add: Created an uninstall script
+                   PKG: Updated ltng 1.12.6
+                        - Updated RIM decoding
+                   PKG: Updated Field Scripts (TET/decode) R1C
+
+2.51     (edussim) Add: Anonymous option --anon, hides customer specific
+                        variables
+                   PKG: Updated ltng 1.12.4
+                        - Added support for data type LONG in LTE Events
+                        - Fixed problem with ltng-csvwriter
+                        - Fixed problem with writing RDR traces to CSV file
+                          and fixed problem with printout for RDR traces
+                        - Added support for disabling all communication with
+                          the Ericsson network with the –no_network flag
+                   PKG: Updated trace tools 3.2.0
+                   PKG: Updated bbfilter 2.9
+                   PKG: Removed terouter, teviewer and uetrace.pl
+
+2.50     (edussim) Mod: New look
+         (edussim) Add: Additional translation for epsUpdateType
+                   PKG: Updated ltng 1.11.0
+                        - Added support for decoding RIM messages
+                   PKG: Scheduling parser removed
+
+2.45     (edussim) Add: EPS Attach and Update type translation (Robert T.)
+         (edussim) Add: Added an option in the installer to set the tools path
+                        (bash only)
+         (epaerez) Fix: CTR HTML output fixed
+         (esmidav) Fix: Fixed a bug with cellId 0 not being displayed
+                   PKG: Updated ltng 1.10.6
+                        - Fixed problem decoding NAS ESMCause, support for te
+                          log read files and fixed problem with
+                          out-of-sequence check
+                        - Changed parameter EpsUpdateType to EpsUpdateResult
+                          in NAS TrackingAreaUpdateAccept
+                        - Updated to latest version (black) of Ericsson
+                          internal X2AP
+                        - Improved version and build handling
+                        - Improved decoding of RRC in S1AP, added support for
+                          decoding RRC IE PDU
+
+2.44     (epaerez) Add: Flow decoded LTE Cell Trace and LTE UE Trace bin files
+                        (ltng -f *.bin.gz -t <path to PM xml file>)
+         (eemheah) PKG: Updated bbfilter 2.8
+                        - Updated for L12A, backwards compatible with L11B
+                        - Supports ltng decoding
+                   PKG: Updated ltng 1.10.1
+                        - Fixed problem decoding NAS AttachAccept and removed
+                          empty lines from printout
+
+2.43     (edussim) Add: NAS Detach type translation
+                   PKG: Updated ltng 1.10.0
+                        - Improved Ericsson modified X2AP decoding, changed
+                          stack names to be not case sensitive
+                        - Workaround for unions with missing 'selector'
+                        - Added check for out-of-sequence and loss of baseband
+                          traces
+                        - Added support for decoding ziplog in baseband crash
+                          dump
+
+2.42     (edussim) Add: S1 parameters
+         (edussim) Fix: Second NAS Message display bug
+         (edussim) Fix: Browse after processing bug on cygwin
+         (edussim) Fix: Installer issue with router and viewer
+                   PKG: Updated ltng 1.7.1 (http://www.lmera.ericsson.se/ltett
+                        /wiki/doku.php?id=wiki:logtool_ng_history)
+                        - Removed S1apPayload from ltng-decoder printout
+                        - Added support for loading trace strings from text
+                          file and event streaming through Trace Router
+                        - Added support for Ericsson modified X2AP decoding
+                        - Fixed errors in 1.6.4, improved S1AP decoding
+                        - Improved output handling, LPP signal to CSV
+                        - Support new release of LTE TraceTools (3.0.0)
+
+2.41     (edussim) Mod: Modified look and feel
+         (edussim) Mod: Changed -a option, other traces now hidden by default,
+                        use -a to show other traces
+         (edussim) Add: NAS Imsi display, different format
+
+2.40     (edussim) Add: QCI indicator for S1
+         (edussim) Add: Redirected Carrier info
+         (edussim) Mod: Reintroduced second NAS line and ip address
+         (edussim) Mod: Removed the -l requirement for list mode
+         (edussim) Mod: Colour now default, use -w to remove colour
+         (edussim) Add: Added Trace activation info
+         (edussim) Add: SCTP protocol messages, requires Scc_SctpHost_proc
+                   PKG: Updated ltng 1.6.2
+                   PKG: Updated multimon 1.0
+
+2.39               PKG: updated ltng 1.5.2
+
+2.38     (edussim) Add: NAS APN parameter
+                   PKG: updated ltng 1.5.1
+                   PKG: updated trace tools, including router/viewer/capture
+
+2.37     (edussim) Add: MME Code in RRC
+         (edussim) Add: added some RRC CGI parameters
+                   PKG: updated bbfilter12
+                   PKG: updated TET.pl and decode
+                   PKG: updated ltng 1.5.0
+
+2.36     (edussim) Mod: Changed TMSI into hex
+         (edussim) Add: Added Parameters: MmeGroupId, MmeCode, frequency band
+                   PKG: Updated bbfilter 2.6
+                   PKG: Updated ltng 1.4.11
+
+2.35     (edussim) Add: warning on ciphered NAS messages
+                   PKG: Updated ltng decoder 1.4.9
+
+2.34               PKG: Updated uetrace.pl (thanks to Conor)
+                   PKG: Updated scheduling_parser.pl (thanks to Ivan)
+                   PKG: Updated ltng decoder 1.4.8
+                   PKG: Added lmAudit.pl (thanks to Margaret)
+
+2.33               PKG: Updated Logtool NG (ltng) 1.4.3
+
+2.32               PKG: Added Logtool NG (ltng) to the package
+
+2.31     (epaerez) Fix: eNB ID display for X2AP - thanks Dave (esmidav) (TR:
+                        HN66743)
+         (edussim) Fix: RSRP and RSRQ lookup calculations fixed
+         (edussim) Add: ERAB parameters added
+         (edussim) Mod: Restructured parameter checking
+         (edussim) Add: --get option, manually get additional ASN parameters
+         (edussim) Mod: some command line parameters have changed
+         (eemheah) PKG: Updated bbfilter12 and decode
+         (edussim) Add: --sidecom option, have comments on the side of flow
+                        (HTML)
+
+2.30     (esmidav) Fix: Cell ID display for X2AP (TR: HN66743)
+         (epaerez) Add: Debug sub:
+                        -debug=x -> print_debug(x, "debug message $scalar");
+
+2.29     (epaerez) Add: Added some TDD parameters
+         (epaerez) Fix: Cell ID display
+                   PKG: Updated to R6C08 ltedecoder
+
+2.28     (edussim) Fix: header repeat bug fix in list mode
+         (edussim) Add: HTML log file split every 500 messages, using --split
+                        command
+
+2.27     (edussim) Fix: NAS display bug
+                   PKG: Updated ltedecoder to R6C07
+                   PKG: Updated TET/decode to R1A/A
+
+2.26     (edussim) Add: Added successful handover tags to HTML report
+         (edussim) Fix: Minor bugs fixed
+                   PKG: Added bbfilter and updated scheduling parser
+
+2.25     (edussim) Add: Cell ID printing in list mode, added to enbid as
+                        provided by multimon
+         (edussim) Add: Added TET and decode to the package
+
+2.24     (epaerez) Add: CTR support
+         (edussim) Add: Displaying comments in list mode
+
+2.23     (edussim) Mod: Check excluding pattern now matches with mtd commands
+
+2.22     (edussim) Mod: optimised without getNas sub, removed NAS message
+                        decoding, ltedecoder-japy must be used to see NAS
+         (edussim) Mod: simplified the main loop, removed some conditions
+         (epaerez) Fix: Avoid printing "unknown message" when only S1AP/X2AP/
+                        RRC header (no hex dump)
+
+2.20     (edussim) Mod: changed header repeat into an option --hrep
+         (econkel) Add: ESM&EMM Cause codes
+         (edussim) Fix: Memory leak on main array
+
+2.19     (edussim) Rem: removed usage counter registration
+         (edussim) Add: CSV format support
+         (edussim) Mod: Added header repeat in ls mode (every 100 messages)
+         (edussim) Mod: RSRP & RSRQ translation
+
+2.18     (edussim) Mod: Adjusted for LTE Logtool TET format.
+         (edussim) Add: Added RLC retransmission/reject traces
+
+2.17     (econkel) Add: more parameters for S1/X2/RRC... thanks Conor
+         (edussim) Add: Displaying imsi in NAS messages
+         (edussim) Add: MTD support for some UL & DL measurements
+
+2.16     (edussim) Add: more attributes for RRC
+         (edussim) Mod: Updated a new version of terouter in the package
+
+2.15     (edussim) Add: ltedecoder and terouter to the package
+
+2.14     (edussim) Add: notification of board restarts
+         (edussim) Add: eNB id in HTML mode
+         (edussim) Add: eNB selection in Live filter
+
+2.13     (edussim) Fix: more detailed S1 message content
+         (edussim) Fix: more detailed RRC message content
+         (edussim) Fix: more detailed X2 message content
+         (edussim) Add: X2 HO notification
+
+2.12     (edussim) Fix: tac translation bug
+         (edussim) Add: Added node restart information
+         (edussim) Mod: Expanded -Z exclusion filter to ASN messages
+         (edussim) Fix: Minor bugs with HTML visual content
+
+2.11     (edussim) Add: Support for Nas decoding using ltedecoder-japy
+         (edussim) Add: -Z pattern to exclude T&E message
+         (edussim) Fix: minor bug when displaying other traces
+
+2.10     (edussim) Fix: usage.pm not supported in vobs
+
+2.09     (edussim) Fix: minor bugs and typos
+         (edussim) Fix: live filter for LTE now works with most browsers
+         (edussim) Add: -C/--cust option for customer friendly reports
+
+2.08     (edussim) Add: -c option for colour
+
+2.07     (edussim) Add: -b option for launching default browser
+
+2.06     (edussim) Add: Support for UE_TRACE
+
+2.05     (edussim) Fix: Some minor bugs when displaying in -l mode
+         (edussim) Add: More ASN parameters displayed
+
+2.04     (edussim) Add: Additional ASN message parameters displayed as tags
+
+2.03     (edussim) Add: -a option to ignore non-ASN messages
+         (edussim) Add: enbid in list mode, allows to see multiple enbids
+         (edussim) Add: extraction of NAS message names
+         (edussim) Add: -F option to filter on T&E messages
+                                  
+2.02     (edussim) Add: added text based flow option
+
+2.01     (edussim) Mod: aligned with WCDMA Flowfox 1.25
+         (esimlum) Add: X2 support, comment support
+
+2.00     (edussim) Mod: Mod for LTE, support for RRC & S1AP messages
+################################################################################

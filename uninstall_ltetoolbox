@@ -1,0 +1,94 @@
+# default paths
+dir=$(eval echo ~)"/ltetools/"
+java=$(which java)
+perl=$(which perl)
+
+while getopts d:j:p:s o
+do	case "$o" in
+	d)	dir="$OPTARG";;
+	j)	java="$OPTARG";;
+	p)	perl="$OPTARG";;
+	s) silent="$OPTIND";;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if [ -r ~/.lffrc ]
+then
+   lastdir=`cat ~/.lffrc | cut -d ":" -f1`
+   lastperl=`cat ~/.lffrc | cut -d ":" -f2`
+   lastjava=`cat ~/.lffrc | cut -d ":" -f3`
+fi
+
+
+################### header #######################
+
+echo "
+================================================================================
+                          PLM LTE MSRBS Toolbox
+                      *** UNINSTALL IN PROGRESS ***
+================================================================================"
+echo "Uninstall:"
+echo "================================================================================"
+echo "Once you finish uninstalling the LTE MSRBS Toolbox, you will no longer be able to use tools included in the package." | fold -s
+echo ""
+
+################### terms #######################
+
+   read -e -p "Are you sure you want to uninstall LTE MSRBS Toolbox? (y/n)? "
+   case $REPLY in
+      n*|N*)
+         echo "Error: Uninstall aborted!"
+         echo ""
+         exit 1
+      ;;
+      y*|Y*)
+      ;;
+      *)
+         echo "Error: Uninstall aborted!"
+         echo ""
+         exit 1
+      ;;
+   esac
+
+################### ask to use last settings #######################
+
+reuse=""
+
+   if [ -z "$lastdir" ]
+   then
+      echo "Error: Unable to find the installation directory."
+      echo ""
+         exit 1
+   fi
+
+
+################### uninstallation #######################
+
+### Clean old libraries
+\rm -rfv ${dir}/lib/
+\rm -rf ${dir}/lib/
+\rm -rfv ${dir}/traceLib/
+\rm -rf ${dir}/traceLib/
+\rm -rfv ${dir}/XML/
+\rm -rf ${dir}/XML/
+\rm -rfv ${dir}/doc/
+\rm -rf ${dir}/doc/
+\rm -rfv ${dir}/perllib/
+\rm -rf ${dir}/perllib/
+\rm -frv ${dir}/*
+\rm -fr ${dir}/*
+\rm -rfv ${dir}/
+\rm -rf ${dir}/
+
+
+
+echo ""
+echo "================================================================================"
+echo "                          *** UNINSTALL COMPLETE ***"
+echo "================================================================================"
+echo ""
+echo "To install again, please download the package from:"
+echo "Visit http://plm-ltemsrbs-toolbox.lmera.ericsson.se/"
+echo ""
+

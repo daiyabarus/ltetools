@@ -1,0 +1,11 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+FLOWFOXCP=$DIR"/lib/Flowfox.jar"
+UNM=`uname | cut -d "_" -f1`
+if [ $UNM == "CYGWIN" ];then
+  FLOWFOXCP="`cygpath -wp $FLOWFOXCP`"
+fi
+
+"/cygdrive/c/PROGRA~3/Oracle/Java/javapath/java.exe" -cp $FLOWFOXCP Flowfox "$@"
+
